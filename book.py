@@ -90,14 +90,37 @@ class Book:
             print("Book on ", str(self.name))
 
             for i in range(len(self.sell_orders)):
-                print('\tSELL ',self.sell_orders[i].quantity(),'@',self.sell_orders[i].price(),' id = ',self.sell_orders[i].id())
+                print(self.sell_orders[i])
 
             for j in range(len(self.buy_orders)):
-                print('\tBUY ',self.buy_orders[j].quantity(),'@',self.buy_orders[j].price(),' id = ',self.buy_orders[j].id())
+                print(self.buy_orders[j]))
 
             print("--------------------")
 
-if __name__ == '__main__':
-      TEST = Book("TEST")
-      TEST.insert_order("SELL",10, 10)
+	
+	def create_dataframe(self):
+        	action_list = []
+        	quantity_list = []
+        	price_list = []
+        	id_list = []
       
+       	    for element in self.buy_orders:
+                 action_list.append(element.type())
+             
+                 quantity_list.append(element.quantity())
+                 price_list.append(element.price())
+                 id_list.append(element.id())
+            
+            for element in self.sell_orders:
+                 action_list.append(element.type())
+             
+           	 quantity_list.append(element.quantity())
+           	 price_list.append(element.price())
+           	 id_list.append(element.id())
+
+       	    data_to_be_converted = {  'ID': id_list, 'Action': action_list, 'Quantity': quantity_list,
+                                'Price': price_list}
+            df = pd.DataFrame(data=data_to_be_converted)
+            return df
+
+  
