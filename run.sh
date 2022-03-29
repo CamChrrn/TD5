@@ -8,6 +8,6 @@ else
 	source .env/bin/activate
 fi
 
-./main.py
+python main.py
 
 
